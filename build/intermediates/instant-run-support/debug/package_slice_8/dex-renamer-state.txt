@@ -1,0 +1,4 @@
+#Wed Aug 09 14:34:41 CST 2017
+base.0=E\:\\Users\\User\\studio1\\smile\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_8
+renamed.0=classes.dex
+file.0=E\:\\Users\\User\\studio1\\smile\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_8\\classes.dex
