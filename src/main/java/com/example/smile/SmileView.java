@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
@@ -20,7 +19,6 @@ import android.widget.TextView;
  * TODO: document your custom view class.
  */
 public class SmileView extends LinearLayout{
-    private int defalutGravity = Gravity.CENTER_VERTICAL;
 
     public SmileView(Context context) {
         super(context);
@@ -44,7 +42,7 @@ public class SmileView extends LinearLayout{
     private void init(AttributeSet attrs, int defStyle) {
          this.removeAllViews();
          setOrientation(VERTICAL);
-         setGravity(defalutGravity|Gravity.BOTTOM);
+         setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM);
          setBackgroundColor(Color.TRANSPARENT);
 
         im=new ImageView(getContext());
@@ -83,7 +81,7 @@ public class SmileView extends LinearLayout{
             @Override
             public void onClick(View v) {
                 bg.setBackgroundResource(R.drawable.color_background);
-                animBack(); //拉伸背景
+                startAnim(); //拉伸背景
                 setVisibities(VISIBLE); //隐藏文字
 
             }
@@ -91,7 +89,7 @@ public class SmileView extends LinearLayout{
     }
 
     private ValueAnimator hightAn;
-    private void animBack() {
+    private void startAnim() {
         im.setClickable(false);
         hightAn=ValueAnimator.ofInt(0,120);
         hightAn.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -125,12 +123,12 @@ public class SmileView extends LinearLayout{
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 im.setTranslationY(0.0f);
-                setBack();
+                backAnim();
             }
         });
     }
 
-    private void setBack() {
+    private void backAnim() {
 
         hightAn=ValueAnimator.ofInt(120,0);
         hightAn.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -156,15 +154,6 @@ public class SmileView extends LinearLayout{
         });
     }
 
-
-
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-
-    }
     //dp转px
     public static int dip2px(Context context, float dipValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
